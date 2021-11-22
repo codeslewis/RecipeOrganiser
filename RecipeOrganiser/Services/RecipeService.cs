@@ -1,10 +1,5 @@
 ﻿using RecipeOrganiser.Entities;
 using RecipeOrganiser.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RecipeOrganiser.Services
 {
@@ -14,17 +9,18 @@ namespace RecipeOrganiser.Services
 
         public RecipeService()
         {
-            _recipeRepository = new InMemoryRecipeRepository();
+            //_recipeRepository = new InMemoryRecipeRepository();
+            _recipeRepository = new ArangoRecipeRepository();
         }
         public void AddNewRecipe(Recipe recipe)
         {
-            _recipeRepository.Add(recipe);
+            _recipeRepository.AddAsync(recipe);
         }
 
         public void PrintAllRecipes()
         {
             Console.WriteLine("Recipes...");
-            _recipeRepository.GetAll().ForEach(r => Console.WriteLine(r));
+            //_recipeRepository.GetAll().Result.ToList<Recipe>().ForEach(r => Console.WriteLine(r));
             Console.WriteLine("End of Recipes");
         }
     }

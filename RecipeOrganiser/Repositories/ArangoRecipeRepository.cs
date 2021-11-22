@@ -28,14 +28,20 @@ namespace RecipeOrganiser.Repositories
             _dbClient.Dispose();
         }
 
-        public void Add(Recipe recipe)
+        public async Task AddAsync(Recipe recipe)
         {
-            throw new NotImplementedException();
+            await _dbClient.Document.PostDocumentAsync<Recipe>(
+                COLLECTION,
+                new Recipe
+                {
+                    Name = recipe.Name
+                });
         }
 
-        public List<Recipe> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task GetAllAsync()
+        //{
+        //    return await _dbClient.Cursor.PostCursorAsync<Recipe>(
+        //        $"FOR doc IN {COLLECTION} RETURN doc");
+        //}
     }
 }
