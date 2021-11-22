@@ -4,7 +4,7 @@ namespace RecipeOrganiser.Repositories
 {
     interface IRecipeRepository
     {
-        List<Recipe> GetAll();
-        void Add(Recipe recipe);
+        //<IEnumerable<Recipe> GetAll();
+        Task AddAsync(Recipe recipe);
     }
 }
