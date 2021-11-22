@@ -20,7 +20,7 @@ namespace RecipeOrganiser.UI
                     "2. Find" + Environment.NewLine + 
                     "3. Print");
                 
-                Enum.TryParse<MenuOption>(Console.ReadLine(), out option);
+                Enum.TryParse<MenuOption>(Console.ReadLine(), true, out option);
 
                 switch (option)
                 {
