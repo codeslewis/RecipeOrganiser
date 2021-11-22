@@ -14,7 +14,7 @@ namespace RecipeOrganiser.Services
         }
         public void AddNewRecipe(Recipe recipe)
         {
-            _recipeRepository.AddAsync(recipe);
+            _recipeRepository.Add(recipe);
         }
 
         public void PrintAllRecipes()
