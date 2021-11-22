@@ -3,7 +3,7 @@ using RecipeOrganiser.Repositories;
 
 namespace RecipeOrganiser.Services
 {
-    class RecipeService : IRecipeService
+    internal class RecipeService : IRecipeService
     {
         private IRepository<Recipe> _recipeRepository;
 
@@ -15,6 +15,11 @@ namespace RecipeOrganiser.Services
         public void AddNewRecipe(Recipe recipe)
         {
             _recipeRepository.Add(recipe);
+        }
+
+        public Recipe FindOneByName(string name)
+        {
+            return _recipeRepository.GetByName(name);
         }
 
         public void PrintAllRecipes()

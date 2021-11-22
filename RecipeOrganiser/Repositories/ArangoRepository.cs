@@ -52,5 +52,18 @@ namespace RecipeOrganiser.Repositories
             return response;
 
         }
+
+        public T GetByName(string name)
+        {
+            CursorResponse<T> item = GetByNameAsync(name).Result;
+            return item.Result.First();
+        }
+
+        private async Task<CursorResponse<T>> GetByNameAsync(string name)
+        {
+            CursorResponse<T> response = await _dbClient.Cursor.PostCursorAsync<T>(
+                $"FOR doc IN {COLLECTION} FILTER doc.Name == {name} RETURN doc");
+            return response;
+        }
     }
 }
