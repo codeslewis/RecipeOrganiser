@@ -1,13 +1,25 @@
-﻿namespace RecipeOrganiser.Entities
-{
-    public class Recipe
-    {
-        public string Name { get; set; }
-        public IEnumerable<string> Ingredients { get; set; }
+﻿using System.Text;
 
-        public override string ToString()
+namespace RecipeOrganiser.Entities;
+public class Recipe
+{
+    public string Name { get; set; }
+    public IEnumerable<string> Ingredients { get; set; }
+
+    public Recipe()
+    {
+        Name = "";
+        Ingredients = new List<string>();
+    }
+
+    public override string ToString()
+    {
+        StringBuilder stringBuilder = new StringBuilder($"Recipe Name: {Name}");
+        foreach(string ingredient in Ingredients)
         {
-            return $"Recipe Name: {Name}";
+            stringBuilder.Append($"    {ingredient}");
         }
+        return stringBuilder.ToString();
     }
 }
+

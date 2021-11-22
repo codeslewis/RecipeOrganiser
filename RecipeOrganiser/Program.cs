@@ -14,7 +14,8 @@ public class Program
         while (true)
         {
             Console.WriteLine("1. Add" + Environment.NewLine + "2. Print");
-            option = int.Parse(Console.ReadLine());
+            option= 0;
+            int.TryParse(Console.ReadLine(), out option);
 
             switch (option)
             {
@@ -34,13 +35,17 @@ public class Program
     {
         Console.WriteLine("Enter Recipe name:");
         string name = Console.ReadLine();
+
         Console.WriteLine("How many ingredients:");
-        int numberOfIngredients = int.Parse(Console.ReadLine());
+        int numberOfIngredients;
+        int.TryParse(Console.ReadLine(), out numberOfIngredients);
+
         string[] ingredients = new string[numberOfIngredients];
         for(int index = 0; index < numberOfIngredients; index++)
         {
             Console.WriteLine("Enter Ingredient:");
-            ingredients[index] = Console.ReadLine();
+            string ingredient = Console.ReadLine();
+            ingredients[index] = ingredient;
         }
         recipeService.AddNewRecipe(new Recipe 
         {  
