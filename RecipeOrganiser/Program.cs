@@ -11,7 +11,7 @@ public class Program
         int option = 0;
         while (true)
         {
-            Console.WriteLine("1. Add" + Environment.NewLine + "2. Print");
+            Console.WriteLine("1. Add" + Environment.NewLine + "2. Find" + Environment.NewLine + "3. Print");
             option= 0;
             int.TryParse(Console.ReadLine(), out option);
 
@@ -21,12 +21,22 @@ public class Program
                     AddRecipe(service);
                     break;
                 case 2:
+                    FindRecipe(service);
+                    break;
+                case 3:
                     service.PrintAllRecipes();
                     break;
                 default:
                     return;
             }
         }
+    }
+
+    private static void FindRecipe(IRecipeService service)
+    {
+        Console.WriteLine("Enter Recipe name:");
+        string name = Console.ReadLine();
+        Console.WriteLine(service.FindOneByName(name));
     }
 
     private static void AddRecipe(IRecipeService recipeService)

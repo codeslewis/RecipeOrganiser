@@ -6,5 +6,6 @@ namespace RecipeOrganiser.Services
     {
         void PrintAllRecipes();
         void AddNewRecipe(Recipe recipe);
+        Recipe FindOneByName(string name);
     }
 }

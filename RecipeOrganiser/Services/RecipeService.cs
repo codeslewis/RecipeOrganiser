@@ -17,6 +17,11 @@ namespace RecipeOrganiser.Services
             _recipeRepository.Add(recipe);
         }
 
+        public Recipe FindOneByName(string name)
+        {
+            return _recipeRepository.GetByName(name);
+        }
+
         public void PrintAllRecipes()
         {
             Console.WriteLine("Recipes...");
