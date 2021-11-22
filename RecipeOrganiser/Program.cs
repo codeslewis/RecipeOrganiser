@@ -34,6 +34,18 @@ public class Program
     {
         Console.WriteLine("Enter Recipe name:");
         string name = Console.ReadLine();
-        recipeService.AddNewRecipe(new Recipe {  Name = name });
+        Console.WriteLine("How many ingredients:");
+        int numberOfIngredients = int.Parse(Console.ReadLine());
+        string[] ingredients = new string[numberOfIngredients];
+        for(int index = 0; index < numberOfIngredients; index++)
+        {
+            Console.WriteLine("Enter Ingredient:");
+            ingredients[index] = Console.ReadLine();
+        }
+        recipeService.AddNewRecipe(new Recipe 
+        {  
+            Name = name,
+            Ingredients = ingredients
+        });
     }
 }
