@@ -14,10 +14,11 @@ public class Recipe
 
     public override string ToString()
     {
-        StringBuilder stringBuilder = new StringBuilder($"Recipe Name: {Name}");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine($"Recipe Name: {Name}");
         foreach(string ingredient in Ingredients)
         {
-            stringBuilder.Append($"    {ingredient}");
+            stringBuilder.AppendLine($"    {ingredient}");
         }
         return stringBuilder.ToString();
     }

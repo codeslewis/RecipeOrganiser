@@ -7,12 +7,12 @@ using ArangoDBNetStandard.CursorApi.Models;
 
 namespace RecipeOrganiser.Repositories
 {
-    class ArangoRecipeRepository : IRecipeRepository
+    internal class ArangoRepository<T> : IRepository<T> where T : class
     {
         private readonly HttpApiTransport _transport;
         private readonly ArangoDBClient _dbClient;
 
-        public ArangoRecipeRepository()
+        public ArangoRepository()
         {
             _transport = HttpApiTransport.UsingBasicAuth(
                 new Uri(URI),
@@ -22,35 +22,35 @@ namespace RecipeOrganiser.Repositories
             _dbClient = new ArangoDBClient(_transport);
         }
 
-        ~ArangoRecipeRepository()
+        ~ArangoRepository()
         {
             _transport.Dispose();
             _dbClient.Dispose();
         }
 
-        public void Add(Recipe recipe)
+        public void Add(T item)
         {
-            AddAsync(recipe).Wait();
+            AddAsync(item).Wait();
         }
-        private async Task AddAsync(Recipe recipe)
+        private async Task AddAsync(T item)
         {
-            await _dbClient.Document.PostDocumentAsync<Recipe>(
+            await _dbClient.Document.PostDocumentAsync<T>(
                 COLLECTION,
-                recipe);
+                item);
         }
 
-        public IEnumerable<Recipe> GetAll()
+        public IEnumerable<T> GetAll()
         {
-            CursorResponse<Recipe> recipes = GetAllAsync().Result;
-            return recipes.Result;
+            CursorResponse<T> item = GetAllAsync().Result;
+            return item.Result;
         }
 
-        private async Task<CursorResponse<Recipe>> GetAllAsync()
+        private async Task<CursorResponse<T>> GetAllAsync()
         {
-            CursorResponse<Recipe> response = await _dbClient.Cursor.PostCursorAsync<Recipe>(
+            CursorResponse<T> response = await _dbClient.Cursor.PostCursorAsync<T>(
                 $"FOR doc IN {COLLECTION} RETURN doc");
             return response;
-            
+
         }
     }
 }

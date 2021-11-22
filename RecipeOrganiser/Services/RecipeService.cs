@@ -5,12 +5,12 @@ namespace RecipeOrganiser.Services
 {
     class RecipeService : IRecipeService
     {
-        private IRecipeRepository _recipeRepository;
+        private IRepository<Recipe> _recipeRepository;
 
         public RecipeService()
         {
             //_recipeRepository = new InMemoryRecipeRepository();
-            _recipeRepository = new ArangoRecipeRepository();
+            _recipeRepository = new ArangoRepository<Recipe>();
         }
         public void AddNewRecipe(Recipe recipe)
         {
