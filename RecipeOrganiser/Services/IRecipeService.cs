@@ -2,7 +2,7 @@
 
 namespace RecipeOrganiser.Services
 {
-    interface IRecipeService
+    internal interface IRecipeService
     {
         void PrintAllRecipes();
         void AddNewRecipe(Recipe recipe);

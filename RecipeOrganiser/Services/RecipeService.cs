@@ -3,7 +3,7 @@ using RecipeOrganiser.Repositories;
 
 namespace RecipeOrganiser.Services
 {
-    class RecipeService : IRecipeService
+    internal class RecipeService : IRecipeService
     {
         private IRepository<Recipe> _recipeRepository;
 
