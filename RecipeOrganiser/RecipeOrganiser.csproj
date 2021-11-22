@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ArangoDBNetStandard" Version="1.0.0-alpha04" />
+  </ItemGroup>
+
 </Project>
