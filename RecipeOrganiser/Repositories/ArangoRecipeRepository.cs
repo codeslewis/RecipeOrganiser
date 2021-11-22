@@ -32,10 +32,7 @@ namespace RecipeOrganiser.Repositories
         {
             await _dbClient.Document.PostDocumentAsync<Recipe>(
                 COLLECTION,
-                new Recipe
-                {
-                    Name = recipe.Name
-                });
+                recipe);
         }
 
         //public async Task GetAllAsync()
