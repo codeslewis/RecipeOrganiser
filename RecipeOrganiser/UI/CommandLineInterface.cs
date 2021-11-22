@@ -11,25 +11,29 @@ namespace RecipeOrganiser.UI
 
         public void Run()
         {
-            int option = 0;
+            MenuOption option;
             while (true)
             {
-                Console.WriteLine("1. Add" + Environment.NewLine + "2. Find" + Environment.NewLine + "3. Print");
-                option = 0;
-                int.TryParse(Console.ReadLine(), out option);
+                Console.WriteLine(
+                    "0. Exit" + Environment.NewLine + 
+                    "1. Add" + Environment.NewLine + 
+                    "2. Find" + Environment.NewLine + 
+                    "3. Print");
+                
+                Enum.TryParse<MenuOption>(Console.ReadLine(), out option);
 
                 switch (option)
                 {
-                    case 1:
+                    case MenuOption.Add:
                         AddRecipe();
                         break;
-                    case 2:
+                    case MenuOption.Find:
                         FindRecipe();
                         break;
-                    case 3:
+                    case MenuOption.Print:
                         _recipeService.PrintAllRecipes();
                         break;
-                    default:
+                    case MenuOption.Exit:
                         return;
                 }
             }
