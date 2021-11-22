@@ -3,6 +3,7 @@ using static RecipeOrganiser.Repositories.DbConnectionInfo;
 
 using ArangoDBNetStandard;
 using ArangoDBNetStandard.Transport.Http;
+using ArangoDBNetStandard.CursorApi.Models;
 
 namespace RecipeOrganiser.Repositories
 {
@@ -41,13 +42,16 @@ namespace RecipeOrganiser.Repositories
 
         public IEnumerable<Recipe> GetAll()
         {
-            throw new NotImplementedException();
+            CursorResponse<Recipe> recipes = GetAllAsync().Result;
+            return recipes.Result;
         }
 
-        //public async Task GetAllAsync()
-        //{
-        //    return await _dbClient.Cursor.PostCursorAsync<Recipe>(
-        //        $"FOR doc IN {COLLECTION} RETURN doc");
-        //}
+        private async Task<CursorResponse<Recipe>> GetAllAsync()
+        {
+            CursorResponse<Recipe> response = await _dbClient.Cursor.PostCursorAsync<Recipe>(
+                "FOR doc IN recipes RETURN doc");
+            return response;
+            
+        }
     }
 }
