@@ -1,5 +1,4 @@
-﻿using RecipeOrganiser.Entities;
-using static RecipeOrganiser.Repositories.DbConnectionInfo;
+﻿using static RecipeOrganiser.Repositories.DbConnectionInfo;
 
 using ArangoDBNetStandard;
 using ArangoDBNetStandard.Transport.Http;

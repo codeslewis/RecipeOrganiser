@@ -7,6 +7,5 @@
         internal static readonly string USER_NAME = "recipe-app";
         internal static readonly string PASSWORD = "password";
         internal static readonly string COLLECTION = "recipes";
-
     }
 }
